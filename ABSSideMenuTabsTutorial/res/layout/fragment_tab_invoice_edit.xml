@@ -1,8 +1,428 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true" >
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/ll_invoice_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:background="#2E2E2E"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/ll_invoice_info1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_invoice_name"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="Invoice name"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_invoice_due_duration"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="21 says" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_invoice_info2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_invoice_details"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:hint="Business Name, Details, Logo"
+                    android:onClick="onClickInvoiceDetails" />
+
+                <TextView
+                    android:id="@+id/tv_invoice_date"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="Date" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="5dip"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:id="@+id/ll_invoice_info3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:onClick="onClickInvoiceClient"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_invoice_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="To" />
+
+                <TextView
+                    android:id="@+id/tv_invoice_client"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:hint="Client" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:background="#2E2E2E"
+            android:orientation="vertical" >
+
+            <ListView
+                android:id="@+id/lv_invoice_item"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/ll_invoice_add_option"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lv_invoice_item"
+                android:layout_margin="5dip"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_add_invoice_item"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:text="Add Item" />
+
+                <LinearLayout
+                    android:id="@+id/ll_add_item"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_multiply_quantity_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 * $0.00" />
+
+                    <TextView
+                        android:id="@+id/tv_invoice_add_total_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickInvoiceInfo"
+                        android:text="$0.00" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_invoice_subtotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_invoice_add_option"
+                android:layout_margin="5dip"
+                android:background="@android:color/darker_gray"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_invoice_subtotal_text"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:text="Subtotal"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_invoice_subtotal_value"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="$0.00"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:background="#2E2E2E"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/ll_discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_discount_text"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:text="Discount" />
+
+                <TextView
+                    android:id="@+id/tv_discount_value"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="$0.00" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_shipping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_shipping_text"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:text="Shipping" />
+
+                <TextView
+                    android:id="@+id/tv_shipping_value"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="$0.00" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_tax_text"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:text="Tax" />
+
+                <TextView
+                    android:id="@+id/tv_tax_value"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="$0.00" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_balance_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_balance_total_text"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:text="Total" />
+
+                <TextView
+                    android:id="@+id/tv_balance_total_value"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="$0.00" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_paid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_paid_text"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:text="Paid" />
+
+                <TextView
+                    android:id="@+id/tv_paid_value"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="$0.00" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_balance_due"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:background="@android:color/darker_gray"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/tv_balance_due_text"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="left"
+                    android:text="Balance Due"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_balance_due_value"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:onClick="onClickInvoiceInfo"
+                    android:text="$0.00"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:background="#2E2E2E"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_payment_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:hint="Payment(Bank transfer, Paypal,etc)" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="5dip"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tv_signature_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:hint="Signature" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="5dip"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/et_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:hint="Notes"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:scrollHorizontally="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:background="#2E2E2E"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/iv_photo_attach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:src="@drawable/ic_action_attachment" />
+
+            <TextView
+                android:id="@+id/tv_add_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_gravity="center_vertical"
+                android:hint="Add photo" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

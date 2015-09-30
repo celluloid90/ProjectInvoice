@@ -26,4 +26,5 @@ public class AddNewInvoiceFragment extends SherlockFragment {
 
 		return mTabHost;
 	}
+// shahin test
 }
